@@ -1,0 +1,89 @@
+
+
+
+            Angular - Front End Technology (Single page Application)
+                    --------------------------------------
+
+                Basic Commands
+            ----------------------
+
+        1. to creata a project: ng new project-name
+        2. to run a project : ng serve, to view in browser: http://localhost:4200/
+        3. to create component: ng g c component-name
+        4. to create Angular Service: ng g s service-folder/service-name
+        5. to create module with lazy loading: ng g m [myModule_name] --route [myRoute_path_name] --module [routing_module_name]
+        6. to create userdefined pipe: ng g p pipe-folder/pipe-name
+        7. to create Angular Guards: ng g g Guards-folder/guard-name
+
+
+
+                Basic Features
+            -----------------------
+
+        1. Module: can hold more components and also import packages to create or design page
+            - root module: AppModule
+        2. Component: have selector, template, stylesheet and a ts file 
+            - root component: AppComponent (only root component selector can be given in index.html page)
+        3. Decorator: to add metadata (data inside another data) to a file
+        4. Selectors: used to display components in html page using a tag
+        5. Data Binding: data shairing within a component (between ts and its html file)
+            - One way Binding: data shairing only in one direction at a time
+                - component to view
+                    - String Interpolation: use  {{property-name}} in html tag as content 
+                    - Property Binding: bind class property with attribute of html tag
+                        [attribute]="property-name"
+                - view to component
+                    - event Binding: (event-name)="function-name()"
+                    - event Binding using $event: (event-name)="function-name($event)"
+                    - event Binding using template reference variable: (event-name)="function-name(template-reference variable)"
+                        - template reference variable: syntax: #variable-name
+            - Two way Binding: data shairing in both direction at the same time
+                - Template Driven Forms:
+                    - use ngModel attribute: syntax- [(ngModel)]="class-property"
+                        - import FormsModule in Module
+        6. Angular Rounting: set up path for component
+            - use AppRoutingModule file
+            - router-outlet selector helps to navigate user requested page
+            - routerLink: to navigate from one page another using html
+        7. Dependency Injection: when two classes (one should be userdefined class and another shoulde be predefined class) are Dependent then dependent class instance can be assigned to the other class using its constructor
+            syntax: constructor(access-specifier variable-name:dependent-class-name){}
+        8. Angular Forms
+            - Template Driven Forms: design html page first
+                - Validation
+            - Model Driven Forms: design model for the page first in ts file
+        9. Angular Service: used to define common logic that can be shared with any classes
+            - communication (data shairing) between userdefined components
+        10. Lazy loading / on-demand loading Module: 
+        11. Asynchronous function handling: RxJS Library
+            - Observable Techniques
+            - To resolve Observable, we have to subscribe the same
+                - next : success response
+                - error : client or server errors
+                - complete : complete
+        12. API Call: use of HttpClient class (get,post,put,delete)
+            - Import HttpClientModule in module
+        13. Life cycle Hooks of Angular Component
+            - OnChanges
+            - OnInit : Called on first initialization happed in the component (ngOnInit)
+            - DoCheck
+            - OnDestroy
+        14. Angular Directives : used to add additional behavior to html elements 
+            - Component Directives : selector used to view a component in html page
+            - Structural Directives : used to change html structure by adding/removing html elements
+                - ngIf : if condition satisfied then it display html element in dom else it removes the html element from dom
+                syntax: *ngIf="condition"
+                - ngFor : to display an array item as a html element in dom
+                syntax : *ngFor="let variable-name of array-name"
+                - ngSwitch :
+            - Attribute Directives : provide style to html elements
+                - ngClass : specify the style using the class name and it can be bind with class property
+        15. ngForm: binds it to a form to track aggregate form value and validation status.
+        16. ActivatedRoute : Provides access to information about a route associated with a component
+        17. Angular Pipes: to transform strings, currency amounts, dates, and other data for display.
+        18. Data communication between userdefined components
+            - using Angular service
+            - using parent child communication
+                - data shairing from parent to child : Input Decorator (can only share values)
+                - data shairing from child to parent : Output Decorator (can only share events)
+            - using signals
+        19. Angular Guards :  control the accessibility of a route based on condition
