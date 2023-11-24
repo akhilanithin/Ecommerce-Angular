@@ -1,1 +1,73 @@
-<p>cart works!</p>
+<app-header></app-header>
+
+<div style="margin-top: 80px;">
+
+    <!-- wishlist without items -->
+<div style="height: auto;" class="d-flex justify-content-center align-items-center w-100">
+    <div>
+        <img style="height: auto;" class="img-fluid" src="https://cdni.iconscout.com/illustration/premium/thumb/empty-cart-5521508-4610092.png" alt="">
+        <div class="text-center">
+            <h1 class="text-danger">Your Cart is Empty!!!</h1>
+            <a class="btn btn-success" routerLink="">Add More Items</a>
+        </div>
+    </div>
+</div>
+   
+    <!-- cart with items -->
+    <section class="py-5">
+        <div class="container px-4 px-lg-5 mt-5">
+            <div class="row">
+                <div class="col-lg-8">
+                    <h2>Cart Summary</h2>
+                    <table class="table shadow mt-3">
+                        <thead>
+                            <tr>
+                                <th>#</th>
+                                <th>Product</th>
+                                <th>Image</th>
+                                <th>Quantity</th>
+                                <th>Price</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>1</td>
+                                <td style="width: 250px;">Fjallraven - Foldsack No. 1 Backpack, Fits 15 Laptops</td>
+                                <td> <img height="100px" width="100px" src="https://fakestoreapi.com/img/81fPKd-2AYL._AC_SL1500_.jpg" alt=""> </td>
+                                <td>
+                                    <div class="d-flex">
+                                        <button class="btn fw-bolder fs-2">-</button>
+                                         <input class="form-control text-center" id="inputQuantity" type="num" value="1" style="max-width: 3rem" readonly/>
+                                        <button class="btn fw-bolder fs-2">+</button>
+                                    </div>
+                                </td>
+                                <td>$300</td>
+                                <td> <button class="btn fs-4"><i class="fa-solid fa-trash text-danger"></i></button> </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <div class="d-flex justify-content-end">
+                        <button class="btn btn-warning me-2">Empty cart</button>
+        
+                        <a routerLink="" class="btn btn-success">Shop More</a>
+        
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    <div class="border shadow rounded p-3">
+                        <h4>Sub Total: <b class="text-danger"> $1000 </b></h4>
+                        
+                        <hr>
+                        <div class="d-grid">
+                            <a routerLink="/user/checkout"  class="btn btn-primary">Check Out</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+</div>
+
+<app-footer></app-footer>
