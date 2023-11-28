@@ -19,7 +19,7 @@ export class AllProductsComponent implements OnInit {
     (await this.api.getAllProjectsAPI()).subscribe({
       next:(res:any)=>{
         this.allProducts = res
-        console.log(this.allProducts);
+        // console.log(this.allProducts);
       },
       error:(err:any)=>{
         console.log(err.message);

@@ -27,17 +27,17 @@
     <section class="py-5">
         <div class="container px-4 px-lg-5 mt-5">
             <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
-                <div class="col mb-5">
-                    <div class="card h-100">
+                <div *ngFor="let product of allProducts" class="col mb-5">
+                    <div class="card h-100 p-2 shadow">
                         <!-- Product image-->
-                        <img style="cursor: pointer;" routerLink="product/view/1" class="card-img-top" src="https://dummyimage.com/450x300/dee2e6/6c757d.jpg" alt="..." />
+                        <img style="cursor: pointer;" height="200px" routerLink="product/view/{{product.id}}" class="card-img-top" [src]="product.image" alt="..." />
                         <!-- Product details-->
                         <div class="card-body p-4">
                             <div class="text-center">
                                 <!-- Product name-->
-                                <h5 class="fw-bolder">Fancy Product</h5>
+                                <h6 class="fw-bolder">{{product.title.slice(0,17)}}...</h6>
                                 <!-- Product price-->
-                                $40.00 
+                                ${{product.price}}
                             </div>
                         </div>
                         <!-- Product actions-->

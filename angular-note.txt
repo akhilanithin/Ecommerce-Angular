@@ -41,7 +41,7 @@
                 - Template Driven Forms:
                     - use ngModel attribute: syntax- [(ngModel)]="class-property"
                         - import FormsModule in Module
-        6. Angular Rounting: set up path for component
+        6. Angular Routing: set up path for component
             - use AppRoutingModule file
             - router-outlet selector helps to navigate user requested page
             - routerLink: to navigate from one page another using html
