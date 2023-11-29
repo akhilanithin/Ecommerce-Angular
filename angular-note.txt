@@ -51,6 +51,12 @@
             - Template Driven Forms: design html page first
                 - Validation
             - Model Driven Forms: design model for the page first in ts file
+                - reactive Forms
+                    - Import RaactiveFormsModule in appModule
+                    - Dependency inject FormBuilder class where we have design reactive form
+                        - Form group
+                        - Form array
+                        - Form control
         9. Angular Service: used to define common logic that can be shared with any classes
             - communication (data shairing) between userdefined components
         10. Lazy loading / on-demand loading Module: 
