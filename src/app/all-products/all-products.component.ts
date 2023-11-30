@@ -15,8 +15,8 @@ export class AllProductsComponent implements OnInit {
     this.getallProducst()
   }
 
-  getallProducst = async () =>{
-    (await this.api.getAllProjectsAPI()).subscribe({
+  getallProducst =  () =>{
+    ( this.api.getAllProjectsAPI()).subscribe({
       next:(res:any)=>{
         this.allProducts = res
         // console.log(this.allProducts);
@@ -26,4 +26,30 @@ export class AllProductsComponent implements OnInit {
       }
     })
   }
+
+  addtowishlist = (product:any)=>{
+    if(sessionStorage.getItem("token")){
+      // alert("proceed to wishlist")
+      this.api.addToWishlistAPI(product).subscribe({
+        next:(res:any)=>{
+          console.log(res);
+          alert(`${res.title} added to your wishlist`)
+        },
+        error:(err:any)=>{
+          alert(err.error)
+        }
+      })
+     }else{
+       alert("Please Login to add products to your wishlist!!!")
+     }
+  }
+
+  addtocart = (product:any)=>{
+    if(sessionStorage.getItem("token")){
+      alert("proceed to cart")
+     }else{
+       alert("Please Login to add products to your Cart!!!")
+     }
+  }
+
 }

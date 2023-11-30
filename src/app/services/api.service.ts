@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 
 @Injectable({
@@ -25,5 +25,17 @@ export class ApiService {
     return this.http.post(`${this.SERVER_URL}/user/login`,user)
   }
 
+  appendTokenHeader = ()=>{
+    const token = JSON.parse(sessionStorage.getItem("token") || '')
+    let headers = new HttpHeaders()
+    if(token){
+      headers = headers.append("Authorization",`Bearer ${token}`)
+    }
+    return {headers}
+  }
+
+  addToWishlistAPI = (reqBody:any)=>{
+    return this.http.post(`${this.SERVER_URL}/user/wishlist/add`,reqBody,this.appendTokenHeader())
+  }
 
 }

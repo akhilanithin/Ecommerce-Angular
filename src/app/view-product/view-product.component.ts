@@ -31,5 +31,21 @@ export class ViewProductComponent implements OnInit {
       }
     })
   }
+
+  addtowishlist = (product:any)=>{
+    if(sessionStorage.getItem("token")){
+      alert("proceed to wishlist")
+     }else{
+       alert("Please Login to add products to your wishlist!!!")
+     }
+  }
+
+  addtocart = (product:any)=>{
+    if(sessionStorage.getItem("token")){
+      alert("proceed to cart")
+     }else{
+       alert("Please Login to add products to your Cart!!!")
+     }
+  }
   
 }
