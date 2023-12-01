@@ -93,3 +93,7 @@
                 - data shairing from child to parent : Output Decorator (can only share events)
             - using signals
         19. Angular Guards :  control the accessibility of a route based on condition
+        20. BehaviorSubject : used to access/updated a value of a variable anywhere in your app
+            - create BehaviorSubject using its Object
+            - to update the BehaviorSubject use next method
+            - to access the BehaviorSubject use subscribe method

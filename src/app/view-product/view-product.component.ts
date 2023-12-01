@@ -34,7 +34,17 @@ export class ViewProductComponent implements OnInit {
 
   addtowishlist = (product:any)=>{
     if(sessionStorage.getItem("token")){
-      alert("proceed to wishlist")
+      // alert("proceed to wishlist")
+      this.api.addToWishlistAPI(product).subscribe({
+        next:(res:any)=>{
+          console.log(res);
+          this.api.getWishlistCount()
+          alert(`${res.title} added to your wishlist`)
+        },
+        error:(err:any)=>{
+          alert(err.error)
+        }
+      })
      }else{
        alert("Please Login to add products to your wishlist!!!")
      }

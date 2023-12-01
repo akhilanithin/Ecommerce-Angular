@@ -3,7 +3,7 @@
 <div style="margin-top: 80px;">
 
     <!-- wishlist without items -->
-<div style="height: auto;" class="d-flex justify-content-center align-items-center w-100">
+<div *ngIf="wishlist.length==0" style="height: auto;" class="d-flex justify-content-center align-items-center w-100">
     <div>
         <img style="height: auto;" class="img-fluid" src="https://cdni.iconscout.com/illustration/premium/thumb/empty-cart-5521508-4610092.png" alt="">
         <div class="text-center">
@@ -14,26 +14,27 @@
 </div>
    
     <!-- wishlist with items -->
-    <section class="py-5">
+    <section *ngIf="wishlist.length>0" class="py-5">
         <div class="container px-4 px-lg-5 mt-5">
+            <h1 class="text-danger mb-3">Your Wishlist...</h1>
             <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
-                <div class="col mb-5">
-                    <div class="card h-100">
+                <div *ngFor="let product of wishlist" class="col mb-5">
+                    <div class="card h-100 p-2">
                         <!-- Product image-->
-                        <img style="cursor: pointer;"  class="card-img-top" src="https://dummyimage.com/450x300/dee2e6/6c757d.jpg" alt="..." />
+                        <img width="200px" height="200px" style="cursor: pointer;"  class="card-img-top" [src]="product.image" alt="..." />
                         <!-- Product details-->
                         <div class="card-body p-4">
                             <div class="text-center">
                                 <!-- Product name-->
-                                <h5 class="fw-bolder">Fancy Product</h5>
+                                <h5 class="fw-bolder">{{product.title}}</h5>
                                 <!-- Product price-->
-                                $40.00 
+                                ${{product.price}} 
                             </div>
                         </div>
                         <!-- Product actions-->
                         <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
                             <div class="d-flex justify-content-between">
-                                <button class="btn  mt-auto"><i class="fa-solid fa-heart-circle-minus fa-2x text-danger"></i></button>
+                                <button (click)="removeWishlistItem(product._id)" class="btn  mt-auto"><i class="fa-solid fa-heart-circle-minus fa-2x text-danger"></i></button>
                                 <button class="btn  mt-auto"><i class="fa-solid fa-cart-plus text-success fa-2x"></i></button>
                             </div>
                         </div>

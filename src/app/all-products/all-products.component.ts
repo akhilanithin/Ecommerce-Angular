@@ -33,6 +33,7 @@ export class AllProductsComponent implements OnInit {
       this.api.addToWishlistAPI(product).subscribe({
         next:(res:any)=>{
           console.log(res);
+          this.api.getWishlistCount()
           alert(`${res.title} added to your wishlist`)
         },
         error:(err:any)=>{

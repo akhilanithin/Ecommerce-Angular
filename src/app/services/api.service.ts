@@ -1,5 +1,6 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { BehaviorSubject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -7,7 +8,11 @@ import { Injectable } from '@angular/core';
 export class ApiService {
 
   SERVER_URL = "http://localhost:3000"
-  constructor(private http:HttpClient) { }
+  wishlistItemCount = new BehaviorSubject(0)
+
+  constructor(private http:HttpClient) {
+    this.getWishlistCount()
+   }
 
   getAllProjectsAPI =  ()=>{
     return this.http.get(`${this.SERVER_URL}/products/all`)
@@ -36,6 +41,20 @@ export class ApiService {
 
   addToWishlistAPI = (reqBody:any)=>{
     return this.http.post(`${this.SERVER_URL}/user/wishlist/add`,reqBody,this.appendTokenHeader())
+  }
+
+  getWishlistAPI = ()=>{
+    return this.http.get(`${this.SERVER_URL}/user/wishlist`,this.appendTokenHeader())
+  }
+
+  getWishlistCount = ()=>{
+    this.getWishlistAPI().subscribe((res:any)=>{
+      this.wishlistItemCount.next(res.length)
+    })
+  }
+
+  deleteWishlistItemAPI =(productId:any)=>{
+    return this.http.delete(`${this.SERVER_URL}/user/wishlist/remove/${productId}`,this.appendTokenHeader())
   }
 
 }
