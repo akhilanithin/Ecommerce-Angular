@@ -70,6 +70,32 @@ export class CartComponent implements OnInit {
       }
     })
   }
+
+  removeItem(id:any){
+    this.api.removeCartItemAPI(id).subscribe({
+      next:(res:any)=>{
+        this.getcart()
+        this.getCartTotalPrice()
+        this.api.getCartCount()
+      },
+      error:(err:any)=>{
+        console.log(err.error);
+      }
+    })
+  }
+
+  emptyCart(){
+    this.api.emptyCartAPI().subscribe({
+      next:(res:any)=>{
+        this.getcart()
+        this.getCartTotalPrice()
+        this.api.getCartCount()
+      },
+      error:(err:any)=>{
+        console.log(err.error);
+      }
+    })
+  }
   
 
 }
