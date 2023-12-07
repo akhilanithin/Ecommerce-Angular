@@ -15,6 +15,7 @@ import { ViewProductComponent } from './view-product/view-product.component';
 import {HttpClientModule}  from '@angular/common/http';
 import { ReactiveFormsModule } from '@angular/forms';
 import { SearchPipe } from './pipes/search.pipe';
+import { NgxPayPalModule } from 'ngx-paypal';
 
 @NgModule({
   declarations: [
@@ -34,7 +35,8 @@ import { SearchPipe } from './pipes/search.pipe';
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    NgxPayPalModule
   ],
   providers: [],
   bootstrap: [AppComponent]

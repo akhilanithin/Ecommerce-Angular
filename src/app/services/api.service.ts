@@ -11,6 +11,7 @@ export class ApiService {
   wishlistItemCount = new BehaviorSubject(0)
   cartItemCount = new BehaviorSubject(0)
   searchKey = new BehaviorSubject("")
+  cartTotalAmount = new BehaviorSubject(0)
 
   constructor(private http:HttpClient) {
     if(sessionStorage.getItem("token")){

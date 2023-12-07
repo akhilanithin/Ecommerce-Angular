@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ApiService } from '../services/api.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-header',
@@ -11,7 +12,7 @@ export class HeaderComponent implements OnInit{
   username:string=""
   wislistCount:Number =0
   cartCount:Number=0
-  constructor(private api:ApiService){}
+  constructor(private api:ApiService,private router:Router){}
   ngOnInit(): void {
     if(sessionStorage.getItem("existingUser")){
      this.username = JSON.parse(sessionStorage.getItem("existingUser") || '').username
@@ -38,5 +39,11 @@ export class HeaderComponent implements OnInit{
   getSearchKey(search:any){
     console.log(search.value);
     this.api.searchKey.next(search.value)
+  }
+
+  logout(){
+    sessionStorage.removeItem("token")
+    sessionStorage.removeItem("existingUser")
+    this.router.navigateByUrl("")
   }
 }

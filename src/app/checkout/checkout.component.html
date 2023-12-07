@@ -25,15 +25,18 @@
               </div>
         </form>
     </div>
-    <div *ngIf="checkoutStatus" class="w-50">
+    <div *ngIf="checkoutStatus" class="w-50 border rounded p-5">
         <h1 class="mb-5">Payment Details</h1>
         <h3>Devilery Address</h3>
         <h5>{{checkOutForm.value.uname}}</h5>
         <h5>{{checkOutForm.value.flat}}</h5>
         <h5>{{checkOutForm.value.place}}</h5>
         <h5>{{checkOutForm.value.pincode}}</h5>
-        <div class="d-flex justtify-content-center mt-3">
-            <h6 class="fw-bolder">Total Amount: <span class="text-danger">$ 3000</span></h6>
+        <div class="d-flex justtify-content-center flex-column t-3">
+            <h4 class="fw-bolder">Total Amount: <span class="text-danger">$ {{cartTotal}}</span></h4>
+            <div class="m-3">
+              <ngx-paypal [config]="payPalConfig"></ngx-paypal>
+            </div>
 
         </div>
     </div>
