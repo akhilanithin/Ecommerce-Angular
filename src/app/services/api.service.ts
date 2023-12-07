@@ -7,7 +7,7 @@ import { BehaviorSubject } from 'rxjs';
 })
 export class ApiService {
 
-  SERVER_URL = "http://localhost:3000"
+  SERVER_URL = "https://e-cart-server-may23.onrender.com"
   wishlistItemCount = new BehaviorSubject(0)
   cartItemCount = new BehaviorSubject(0)
   searchKey = new BehaviorSubject("")
