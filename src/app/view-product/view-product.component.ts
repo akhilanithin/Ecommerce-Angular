@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { ApiService } from '../services/api.service';
+import { ToasterService } from '../services/toaster.service';
 
 @Component({
   selector: 'app-view-product',
@@ -10,7 +11,7 @@ import { ApiService } from '../services/api.service';
 export class ViewProductComponent implements OnInit {
 
   product:any={}
-  constructor(private activateRouteInstance: ActivatedRoute,private api:ApiService){}
+  constructor(private activateRouteInstance: ActivatedRoute,private api:ApiService,private toaster: ToasterService){}
   ngOnInit(): void {
     this.activateRouteInstance.params.subscribe((data:any)=>{
       const {id} = data
@@ -34,19 +35,18 @@ export class ViewProductComponent implements OnInit {
 
   addtowishlist = (product:any)=>{
     if(sessionStorage.getItem("token")){
-      // alert("proceed to wishlist")
       this.api.addToWishlistAPI(product).subscribe({
         next:(res:any)=>{
           console.log(res);
           this.api.getWishlistCount()
-          alert(`${res.title} added to your wishlist`)
+          this.toaster.showSuccess(`${res.title} added to your wishlist`)
         },
         error:(err:any)=>{
-          alert(err.error)
+          this.toaster.showError(err.error)
         }
       })
      }else{
-       alert("Please Login to add products to your wishlist!!!")
+       this.toaster.showWarning("Please Login to add products to your wishlist!!!")
      }
   }
 
@@ -58,14 +58,13 @@ export class ViewProductComponent implements OnInit {
       this.api.addToCartAPI(product).subscribe({
         next:(res:any)=>{
           this.api.getCartCount()
-          alert(res)
         },
         error:(err:any)=>{
           console.log(err.error);
         }
       })
      }else{
-       alert("Please Login to add products to your Cart!!!")
+       this.toaster.showWarning("Please Login to add products to your Cart!!!")
      }
   }
   

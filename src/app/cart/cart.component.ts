@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ApiService } from '../services/api.service';
 import { Router } from '@angular/router';
+import { ToasterService } from '../services/toaster.service';
 
 @Component({
   selector: 'app-cart',
@@ -11,13 +12,13 @@ export class CartComponent implements OnInit {
 
   cart:any=[]
   cartTotalPrice:number = 0
-  constructor(private api:ApiService,private router:Router){}
+  constructor(private api:ApiService,private router:Router,private toaster: ToasterService){}
 
   ngOnInit(): void {
     if(sessionStorage.getItem("token")){
       this.getcart()
     }else{
-      alert("Please Login!!!")
+      this.toaster.showWarning("Please Login!!!")
     }
   }
   getcart(){
@@ -29,7 +30,7 @@ export class CartComponent implements OnInit {
         this.getCartTotalPrice()
       },
       error:(err:any)=>{
-        alert(err.error)
+        this.toaster.showError(err.error)
       }
     })
   }

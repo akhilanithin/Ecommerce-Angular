@@ -16,6 +16,8 @@ import {HttpClientModule}  from '@angular/common/http';
 import { ReactiveFormsModule } from '@angular/forms';
 import { SearchPipe } from './pipes/search.pipe';
 import { NgxPayPalModule } from 'ngx-paypal';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ToastrModule } from 'ngx-toastr';
 
 @NgModule({
   declarations: [
@@ -29,14 +31,18 @@ import { NgxPayPalModule } from 'ngx-paypal';
     LoginComponent,
     RegisterComponent,
     ViewProductComponent,
-    SearchPipe
+    SearchPipe,
+    
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
     ReactiveFormsModule,
-    NgxPayPalModule
+    NgxPayPalModule,
+    BrowserAnimationsModule,
+    ToastrModule.forRoot(),
+
   ],
   providers: [],
   bootstrap: [AppComponent]

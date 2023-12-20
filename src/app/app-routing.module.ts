@@ -36,6 +36,9 @@ const routes: Routes = [
   //view product
   {
     path:'product/view/:id', component:ViewProductComponent
+  },
+  {
+    path:'**',redirectTo:''
   }
 ];
 

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ApiService } from '../services/api.service';
+import { ToasterService } from '../services/toaster.service';
 
 @Component({
   selector: 'app-all-products',
@@ -10,7 +11,7 @@ export class AllProductsComponent implements OnInit {
 
   allProducts:any = []
   searchString:string=""
-  constructor(private api:ApiService){}
+  constructor(private api:ApiService,private toaster: ToasterService){}
 
   ngOnInit(): void {
     this.getallProducst()
@@ -33,19 +34,18 @@ export class AllProductsComponent implements OnInit {
 
   addtowishlist = (product:any)=>{
     if(sessionStorage.getItem("token")){
-      // alert("proceed to wishlist")
       this.api.addToWishlistAPI(product).subscribe({
         next:(res:any)=>{
           console.log(res);
           this.api.getWishlistCount()
-          alert(`${res.title} added to your wishlist`)
+          this.toaster.showSuccess(`${res.title} added to your wishlist`)
         },
         error:(err:any)=>{
-          alert(err.error)
+          this.toaster.showError(err.error)
         }
       })
      }else{
-       alert("Please Login to add products to your wishlist!!!")
+       this.toaster.showWarning("Please Login to add products to your wishlist!!!")
      }
   }
 
@@ -57,7 +57,7 @@ export class AllProductsComponent implements OnInit {
       this.api.addToCartAPI(product).subscribe({
         next:(res:any)=>{
           this.api.getCartCount()
-          alert(res)
+          this.toaster.showSuccess(res)
         },
         error:(err:any)=>{
           console.log(err.error);
@@ -66,7 +66,7 @@ export class AllProductsComponent implements OnInit {
       })
       
      }else{
-       alert("Please Login to add products to your Cart!!!")
+       this.toaster.showWarning("Please Login to add products to your Cart!!!")
      }
   }
 

@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { ApiService } from '../services/api.service';
 import { Router } from '@angular/router';
+import { ToasterService } from '../services/toaster.service';
 
 @Component({
   selector: 'app-login',
@@ -14,7 +15,7 @@ export class LoginComponent {
     email:['',[Validators.required,Validators.email]],
     password:['',[Validators.required,Validators.pattern('[a-zA-Z0-9]*')]]
   })
-  constructor(private fb:FormBuilder,private api:ApiService,private router:Router){}
+  constructor(private fb:FormBuilder,private api:ApiService,private router:Router,private toaster: ToasterService){}
   login(){
     if(this.loginForm.valid){
       const email = this.loginForm.value.email
@@ -33,11 +34,11 @@ export class LoginComponent {
         },
         error:(err:any)=>{
           console.log(err);
-          alert(err.error)          
+          this.toaster.showError(err.error)          
         }
       })
     }else{
-      alert("Invalid Form")
+      this.toaster.showError("Invalid Form")
     }
   }
 }

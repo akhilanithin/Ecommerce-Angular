@@ -3,6 +3,7 @@ import { FormBuilder, Validators } from '@angular/forms';
 import { ApiService } from '../services/api.service';
 import { IPayPalConfig, ICreateOrderRequest } from 'ngx-paypal';
 import { Router } from '@angular/router';
+import { ToasterService } from '../services/toaster.service';
 
 @Component({
   selector: 'app-checkout',
@@ -24,7 +25,7 @@ export class CheckoutComponent implements OnInit{
   showCancel:boolean = false
   showError:boolean = false
 
-  constructor(private fb:FormBuilder,private api:ApiService,private router:Router){
+  constructor(private fb:FormBuilder,private api:ApiService,private router:Router,private toaster: ToasterService){
 
   }
 
@@ -43,7 +44,7 @@ export class CheckoutComponent implements OnInit{
       this.checkoutStatus = true
       this.initConfig()
     }else{
-      alert("Invalid Form")
+      this.toaster.showWarning("Invalid Form")
     }
   }
 
@@ -87,7 +88,7 @@ export class CheckoutComponent implements OnInit{
             this.api.emptyCartAPI().subscribe((res:any)=>{
               this.checkoutStatus = false
               this.checkOutForm.reset()
-              alert("Your Order has placed successfully!!!")
+              this.toaster.showSuccess("Your Order has placed successfully!!!")
               this.router.navigateByUrl("/cart")
             })
         },
@@ -95,13 +96,13 @@ export class CheckoutComponent implements OnInit{
             console.log('OnCancel', data, actions);
             this.showCancel = true;
             this.checkoutStatus = false
-           alert("Transaction has been cancelled!!!")
+           this.toaster.showWarning("Transaction has been cancelled!!!")
         },
         onError: err => {
             console.log('OnError', err);
             this.showError = true;
             this.checkoutStatus = false
-            alert("Transaction has been failed!!!")
+            this.toaster.showError("Transaction has been failed!!!")
         },
         onClick: (data, actions) => {
             console.log('onClick', data, actions);

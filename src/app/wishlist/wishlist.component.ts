@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ApiService } from '../services/api.service';
+import { ToasterService } from '../services/toaster.service';
 
 @Component({
   selector: 'app-wishlist',
@@ -8,13 +9,13 @@ import { ApiService } from '../services/api.service';
 })
 export class WishlistComponent implements OnInit {
   wishlist:any=[]
-  constructor(private api:ApiService){}
+  constructor(private api:ApiService,private toaster: ToasterService){}
 
   ngOnInit(): void {
     if(sessionStorage.getItem("token")){
       this.getwishlist()
     }else{
-      alert("Please Login!!!")
+      this.toaster.showWarning("Please Login!!!")
     }
     
   }
@@ -26,7 +27,7 @@ export class WishlistComponent implements OnInit {
         this.api.getWishlistCount()
       },
       error:(err:any)=>{
-        alert(err.error)
+        this.toaster.showError(err.error)
       }
     })
   }
