@@ -42,5 +42,27 @@ export class WishlistComponent implements OnInit {
       }
     })
   }
+  addtocart = (product:any)=>{
+    if(sessionStorage.getItem("token")){
+      //add quantity key with value 1 to product object
+      Object.assign(product,{quantity:1})
+      //console.log(product);
+      this.api.addToCartAPI(product).subscribe({
+        next:(res:any)=>{
+          this.api.getCartCount()
+          this.toaster.showSuccess(res)
+          this.removeWishlistItem(product._id)
+        },
+        error:(err:any)=>{
+          console.log(err.error);
+          
+        }
+      })
+      
+     }else{
+       this.toaster.showWarning("Please Login to add products to your Cart!!!")
+     }
+  }
+
 
 }

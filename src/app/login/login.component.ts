@@ -26,9 +26,11 @@ export class LoginComponent {
       }
       this.api.loginAPI(reqBody).subscribe({
         next:(res:any)=>{
-          console.log(res);
+         
           sessionStorage.setItem("existingUser",JSON.stringify(res.existingUser))
           sessionStorage.setItem("token",JSON.stringify(res.token))
+          this.toaster.showSuccess(`${res.existingUser.username} Login Sucessfully!!!`)
+          this.loginForm.reset()
           //naviagte login
           this.router.navigateByUrl('')
         },
